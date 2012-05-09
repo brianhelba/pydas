@@ -251,29 +251,31 @@ class CoreDriver(BaseDriver):
         response = self.request('midas.folder.create', parameters)
         return response
 
-    def folder_get(self, token, folder_id):
+    def folder_get(self, folder_id, token=None):
         """Get the attributes of the specified folder.
 
-        :param token: A valid token for the user in question.
         :param folder_id: The id of the requested folder.
+        :param token: (optional) A valid token for the user in question.
         :returns: Dictionary of the folder attributes.
         """
         parameters = dict()
-        parameters['token'] = token
         parameters['id'] = folder_id
+        if token:
+            parameters['token'] = token
         response = self.request('midas.folder.get', parameters)
         return response
 
-    def folder_children(self, token, folder_id):
+    def folder_children(self, folder_id, token=None):
         """Get the non-recursive children of the passed in folder_id.
 
-        :param token: A valid token for the user in question.
         :param folder_id: The id of the requested folder.
+        :param token: (optional) A valid token for the user in question.
         :returns: Dictionary of two lists: 'folders' and 'items'.
         """
         parameters = dict()
-        parameters['token'] = token
         parameters['id'] = folder_id
+        if token:
+            parameters['token'] = token
         response = self.request('midas.folder.children', parameters)
         return response
 
@@ -328,16 +330,17 @@ class CoreDriver(BaseDriver):
         response = self.request('midas.item.create', parameters)
         return response
 
-    def item_get(self, token, item_id):
+    def item_get(self, item_id, token=None):
         """Get the attributes of the specified item.
 
-        :param token: A valid token for the user in question.
         :param item_id: The id of the requested item.
+        :param token: (optional) A valid token for the user in question.
         :returns: Dictionary of the item attributes.
         """
         parameters = dict()
-        parameters['token'] = token
         parameters['id'] = item_id
+        if token:
+            parameters['token'] = token
         response = self.request('midas.item.get', parameters)
         return response
 
